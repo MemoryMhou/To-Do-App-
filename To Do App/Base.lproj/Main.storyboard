@@ -97,7 +97,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Y0O-FF-gFx">
-                                                    <rect key="frame" x="0.0" y="83" width="375" height="34.5"/>
+                                                    <rect key="frame" x="0.0" y="83" width="375" height="35"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -143,7 +143,11 @@
                                 <action selector="CancelButtonPressed:" destination="ALp-IJ-9Nb" id="JDU-RG-4nE"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NvO-wY-25H"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NvO-wY-25H">
+                            <connections>
+                                <segue destination="QeU-Mr-K5i" kind="unwind" unwindAction="unwindFromDetailWithSegue:" id="jnn-pN-mMo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="Y0O-FF-gFx" id="pLb-03-e0U"/>
@@ -153,6 +157,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOR-61-5dK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="QeU-Mr-K5i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2858.4000000000001" y="-22.03898050974513"/>
         </scene>
