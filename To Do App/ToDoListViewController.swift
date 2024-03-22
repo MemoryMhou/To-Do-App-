@@ -11,6 +11,7 @@ class ToDoListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
     var toDoListArray = ["clea", "cook", "run", "jogging"]
     
     override func viewDidLoad() {
@@ -46,6 +47,19 @@ class ToDoListViewController: UIViewController {
     }
 
 
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            sender.title = "Edit"
+            addBarButton.isEnabled = true
+            
+        } else {
+            tableView.setEditing(true, animated: true)
+            sender.title = "Done"
+            addBarButton.isEnabled = false
+        }
+    }
 }
 
 extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -62,5 +76,15 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            toDoListArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = toDoListArray[sourceIndexPath.row]
+        toDoListArray.remove(at: sourceIndexPath.row)
+        toDoListArray.insert(itemToMove, at:destinationIndexPath.row)
+    }
 }

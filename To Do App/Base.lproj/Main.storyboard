@@ -44,13 +44,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VHf-VK-hSo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YXt-gb-tqY">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="nn1-ug-zgp">
                             <connections>
-                                <segue destination="cTK-Yi-kZD" kind="presentation" identifier="AddDetail" id="IR1-Ra-zg6"/>
+                                <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="3Ab-zq-cXP"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YXt-gb-tqY"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBarButton" destination="YXt-gb-tqY" id="Ody-a5-bke"/>
                         <outlet property="tableView" destination="vEn-LZ-keM" id="YiI-jr-lia"/>
                     </connections>
                 </viewController>
@@ -186,7 +188,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3Ns-sg-4xw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OkH-Ms-lok">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
