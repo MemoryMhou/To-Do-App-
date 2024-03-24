@@ -10,25 +10,34 @@ import UIKit
 class ToDoDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var saveBarButtton: UIBarButtonItem!
-    
     @IBOutlet weak var noteView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var reminderSwitch: UISwitch!
    
-    var toDoItem: String!
+    var toDoItem: ToDoItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if toDoItem == nil {
-            toDoItem = ""
+            toDoItem = ToDoItem(name: "", date: Date(), notes: "", reminderSet: false)
+            
         }
-        
-        nameField.text = toDoItem
-
+        updateUserInterface()
     }
     
+    func updateUserInterface() {
+        nameField.text = toDoItem.name
+        datePicker.date = toDoItem.date
+        noteView.text = toDoItem.notes
+        reminderSwitch.isOn = toDoItem.reminderSet
+        dateLabel.textColor = (reminderSwitch.isOn ? .black : .gray )
+        
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        toDoItem = nameField.text
+        toDoItem = ToDoItem(name: nameField.text!, date: datePicker.date, notes: noteView.text, reminderSet: reminderSwitch
+            .isOn)
     }
 
 
@@ -44,4 +53,7 @@ class ToDoDetailTableViewController: UITableViewController {
         
         }
     
+    @IBAction func remainderSwitchChanged(_ sender: UISwitch) {
+        dateLabel.textColor = (reminderSwitch.isOn ? .black : .gray )
+    }
 }
